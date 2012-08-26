@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE orm SYSTEM "file:/javax/jdo/orm.dtd">
+<orm>
+  <package name="com.eleven0eight.commons.data.test">
+  
+    <class name="Driver" table="Driver">   
+      <inheritance strategy="new-table"/>    
+      <field name="age" persistence-modifier="persistent">
+        <column name="age" jdbc-type="INTEGER" allows-null="false"/>
+      </field>
+      <field name="cars" persistence-modifier="persistent">
+        <collection element-type="Car" mapped-by="driver" dependent-element="true"/>
+        <join/>
+      </field>      
+    </class>  
+  
+    <class name="Car" table="car">   
+      <field name="id" persistence-modifier="persistent">
+        <column name="carId"/>
+      </field>        
+      <field name="make" persistence-modifier="persistent">
+        <column name="make" length="100" jdbc-type="VARCHAR" allows-null="false"/>      
+      </field>
+      <field name="model" persistence-modifier="persistent">
+        <column name="model" length="100" jdbc-type="VARCHAR" allows-null="true"/>
+      </field>
+      <field name="year" persistence-modifier="persistent">
+        <column name="year" jdbc-type="INTEGER" allows-null="false"/>
+      </field>
+      <field name="driver" persistence-modifier="persistent" dependent-element="true"/>
+    </class>    
+    
+    <class name="Person">
+      <inheritance strategy="new-table"/>
+      <field name="id" persistence-modifier="persistent">
+        <column name="personId"/>
+      </field>        
+      <field name="firstName" persistence-modifier="persistent">
+        <column name="firstName" length="20" jdbc-type="VARCHAR" allows-null="false"/>      
+      </field>
+      <field name="lastName" persistence-modifier="persistent">
+        <column name="lastName" length="20" jdbc-type="VARCHAR" allows-null="false"/>
+      </field>
+      <field name="phone" persistence-modifier="persistent">
+        <column name="phone" length="10" jdbc-type="VARCHAR" allows-null="true"/>
+      </field>
+    </class>   
+    
+    <class name="Employee">
+      <inheritance strategy="new-table"/>       
+      <field name="department" persistence-modifier="persistent">
+        <column name="department" length="10" jdbc-type="VARCHAR" allows-null="false"/>      
+      </field>
+      <field name="title" persistence-modifier="persistent">
+        <column name="title" length="50" jdbc-type="VARCHAR" allows-null="false"/>
+      </field>
+    </class> 
+
+  </package>
+</orm>
